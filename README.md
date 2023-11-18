@@ -23,12 +23,15 @@ If you find this code useful for your research, please consider citing our work.
 
 * **Nov-2023** We have released our code and pre-trained checkpoints.
 
-## About
+## Introduction
+
+Our first stage (noted as stage-I)
 
 <p align="center">
-  <img src="demo_imgs/model_blip_finetune.png" height="150">
+  <img src="demo_imgs/model_blip_finetune.png" height="125">
 </p>
 
+The second stage (noted as stage-II)
 <p align="center">
   <img src="demo_imgs/model_combiner.png" height="150">
 </p>
@@ -42,6 +45,8 @@ A brief introduction on each scripts in `/src` is in [CLIP4Cir - Usage](https://
 ## Training
 
 Our methods is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training. Please check our paper for details.
+
+The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the VRAM usage to be approx. 36G during training. You can also adjust the batch size to lower the VRAM consumption.
 
 ### for Fashion-IQ
 
@@ -63,7 +68,7 @@ python src/clip_fine_tune.py --dataset FashionIQ \
 
 ```bash
 # Optional: comet experiment logging --api-key and --workspace
-# Load the blip text encoder weights finetuned in the previous step in --blip-model-path
+# Required: Load the blip text encoder weights finetuned in the previous step in --blip-model-path
 python src/combiner_train.py --dataset FashionIQ \
                              --api-key <your comet api> --workspace <your comet workspace> \
                              --num-epochs 300 --batch-size 512 --blip-bs 32 \
@@ -93,7 +98,7 @@ python src/clip_fine_tune.py --dataset CIRR \
 
 ```bash
 # Optional: comet experiment logging --api-key and --workspace
-# Load the blip text encoder weights finetuned in the previous step in --blip-model-path
+# Required: Load the blip text encoder weights finetuned in the previous step in --blip-model-path
 python src/combiner_train.py --dataset CIRR \
                              --api-key <your comet api> --workspace <your comet workspace> \
                              --num-epochs 300 --batch-size 512 --blip-bs 32 \
@@ -119,7 +124,7 @@ The following weights shall reproduce our results reported in Tables 1 and 2 (ho
 
 To validate on checkpoints, please see below:
 
-#### Fashion-IQ
+#### on Fashion-IQ
 
 ```bash
 python src/validate.py --dataset fashionIQ \
@@ -127,7 +132,7 @@ python src/validate.py --dataset fashionIQ \
                        --combiner-path <combiner trained weights path>/combiner.pt \
                        --blip-model-path <BLIP text encoder finetuned weights path>/tuned_blip_best.pt
 ```
-#### CIRR
+#### on CIRR
 
 For validation split:
 
@@ -153,9 +158,32 @@ Our generated `.json` files are also available [here](/submission/CIRR/). To try
 
 ### Hyperparameters
 
- * reversed loss scale
- * cosine learning rate schedule
+The following hyperparameters may warrant further tunings for a better performance:
 
+ * reversed loss scale in both stages (see *supplementary material - Section A*);
+ * learning rate and cosine learning rate schedule in stage-I;
+
+Note that this is not a comprehensive list.
+
+Additionally, we discovered that an extended stage-I finetuning -- even if the validation shows no sign of overfitting -- may not necessarily benefit the stage-II training.
+
+### Applying CLIP4Cir Combiner upgrades
+
+Since our work, the authors of CLIP4Cir have released upgrades to their original Combiner architecture with an [improved performance](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive).
+
+Given that our method is built directly on top of this architecture, it is reasonable to assume that applying these upgrades to our method (while still replacing CLIP with BLIP encoders) may yield a performance increase. It is straightforward to modify the Combiner architecture, as it is self-contained in `src/combiner.py`.
+
+### Finetuning BLIP image encoder
+
+In our work, we elect to freeze the BLIP image encoder during stage-I finetuning. However, it is also possible to finetune it alongside the BLIP text encoder will be beneficial.
+
+Note that finetuning the BLIP image encoder would require much more VRAM.
+
+---
+
+### Training without bi-directional queries
+
+Simply comment out the sections related to `loss_r` in both stages. The model can then be used as a **BLIP4Cir baseline** for future research.
 
 ## License
 MIT License applied. Please also check the licenses from [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir/blob/master/LICENSE) and [BLIP](https://github.com/salesforce/BLIP/blob/main/LICENSE.txt) as our code is based on theirs.
