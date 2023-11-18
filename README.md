@@ -41,11 +41,14 @@ A brief introduction on each scripts in `/src` is in [CLIP4Cir - Usage](https://
 
 ## Training
 
-### Fashion-IQ
+Our methods is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training. Please check our paper for details.
+
+### for Fashion-IQ
 
 #### BLIP text encoder finetuning
 
 ```bash
+# Optional: comet experiment logging --api-key and --workspace
 python src/clip_fine_tune.py --dataset FashionIQ \
                              --api-key <your comet api> --workspace <your comet workspace> \
                              --num-epochs 20 --batch-size 128 \
@@ -59,6 +62,8 @@ python src/clip_fine_tune.py --dataset FashionIQ \
 #### Combiner training
 
 ```bash
+# Optional: comet experiment logging --api-key and --workspace
+# Load the blip text encoder weights finetuned in the previous step in --blip-model-path
 python src/combiner_train.py --dataset FashionIQ \
                              --api-key <your comet api> --workspace <your comet workspace> \
                              --num-epochs 300 --batch-size 512 --blip-bs 32 \
@@ -69,11 +74,12 @@ python src/combiner_train.py --dataset FashionIQ \
                              --experiment-name Combiner_loss_r.50_2e-5__BLIP_cos10_loss_r_.40_5e-5
 ```
 
-### CIRR
+### for CIRR
 
 #### BLIP text encoder finetuning
 
 ```bash
+# Optional: comet experiment logging --api-key and --workspace
 python src/clip_fine_tune.py --dataset CIRR \
                              --api-key <your comet api> --workspace <your comet workspace> \
                              --num-epochs 20 --batch-size 128 \
@@ -86,6 +92,8 @@ python src/clip_fine_tune.py --dataset CIRR \
 #### Combiner training
 
 ```bash
+# Optional: comet experiment logging --api-key and --workspace
+# Load the blip text encoder weights finetuned in the previous step in --blip-model-path
 python src/combiner_train.py --dataset CIRR \
                              --api-key <your comet api> --workspace <your comet workspace> \
                              --num-epochs 300 --batch-size 512 --blip-bs 32 \
@@ -98,7 +106,7 @@ python src/combiner_train.py --dataset CIRR \
 
 ## Validating and Testing
 
-### Reproducing results
+### Checkpoints
 
 The following weights shall reproduce our results reported in Tables 1 and 2 (hosted on OneDrive, check the SHA1 hash against the listed value):
 
@@ -106,6 +114,8 @@ The following weights shall reproduce our results reported in Tables 1 and 2 (ho
 |------------|----------|-------------|
 | Fashion-IQ <br />`SHA1` | [combiner.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8onMBM4dP_yezpcNQ?e=jTu9Gu) <br />`4a1ba45bf52033c245c420b30873f68bc8e60732`  | [tuned_blip_best.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8oo0AF4kSHKWmJgtg?e=c793Sg) <br />`80f0db536f588253fca416af83cb50fab709edda`   |
 | CIRR <br />`SHA1`      | [combiner_mean.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8oqSfGkANa0U-pW-A?e=ohCgln) <br />`327703361117400de83936674d5c3032af37bd7a` | [tuned_blip_mean.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8orEuV7r87WkyU5Jg?e=Up9aGw) <br />`67dca8a1905802cfd4cd02f640abb0579f1f88fd`   |
+
+### Reproducing results
 
 To validate on checkpoints, please see below:
 
