@@ -175,11 +175,11 @@ Given that our method is built directly on top of this architecture, it is reaso
 
 ### Finetuning BLIP image encoder
 
-In our work, we elect to freeze the BLIP image encoder during stage-I finetuning. However, it is also possible to finetune it alongside the BLIP text encoder will be beneficial.
+In our work, we elect to freeze the BLIP image encoder during stage-I finetuning. However, it is also possible to finetune it alongside the BLIP text encoder.
 
 Note that finetuning the BLIP image encoder would require much more VRAM.
 
----
+***
 
 ### Training without bi-directional queries
 
