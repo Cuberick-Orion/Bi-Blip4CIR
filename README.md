@@ -40,13 +40,32 @@ The second stage (noted as stage-II)
 
 TODO
 
-A brief introduction on each scripts in `/src` is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/master#usage).
+Download BLIP pre-trained checkpoint at [`model_base.pth`](https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth), `SHA1: 5f1d8cdfae91e22a35e98a4bbb4c43be7bd0ac50`.
+By default, we recommend storing the downloaded checkpoint file at `models/model_base.pth`.
+
+Here, we use **BLIP w/ ViT-B**. For a complete list of available checkpoints, see [here](https://github.com/salesforce/BLIP#pre-trained-checkpoints).
+
+
+## Code Breakdown
+
+Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir) with additional modules from [BLIP](https://github.com/salesforce/BLIP).
+
+From the perspective of implementation, compared to the original CLIP4Cir codebase, differences are mostly in the following two aspects:
+
+ - we replaced the CLIP image/text encoders to BLIP as defined in `src/blip_modules/`;
+ - we involve the reversed queries during training, which are constructed on-the-fly (see codeblocks surrounding `loss_r` in `src/clip_fine_tune.py` and `src/combiner_train.py`).
+
+A brief introduction on the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/master#usage).
+Though the structures are mostly preserved, additional modifications are made to the scripts.
 
 ## Training
 
-Our methods is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training. Please check our paper for details.
+Our methods is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training. 
 
-The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the VRAM usage to be approx. 36G during training. You can also adjust the batch size to lower the VRAM consumption.
+Experiments are conducted on two standard datasets -- Fashion-IQ and CIRR.
+Please check our paper for details.
+
+The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the VRAM usage to be approx. 36G (during training). You can also adjust the batch size to lower the VRAM consumption.
 
 ### for Fashion-IQ
 
@@ -171,7 +190,9 @@ Additionally, we discovered that an extended stage-I finetuning -- even if the v
 
 Since our work, the authors of CLIP4Cir have released upgrades to their original Combiner architecture with an [improved performance](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive).
 
-Given that our method is built directly on top of this architecture, it is reasonable to assume that applying these upgrades to our method (while still replacing CLIP with BLIP encoders) may yield a performance increase. It is straightforward to modify the Combiner architecture, as it is self-contained in `src/combiner.py`.
+Given that our method is built directly on top of this architecture, it is reasonable to assume that applying these upgrades to our method (while still replacing CLIP with BLIP encoders) may yield a performance increase. 
+
+It is straightforward to modify the Combiner architecture, as it is self-contained in `src/combiner.py`.
 
 ### Finetuning BLIP image encoder
 
@@ -179,9 +200,9 @@ In our work, we elect to freeze the BLIP image encoder during stage-I finetuning
 
 Note that finetuning the BLIP image encoder would require much more VRAM.
 
-***
+##
 
-### Training without bi-directional queries
+### BLIP4Cir -- Training without bi-directional queries
 
 Simply comment out the sections related to `loss_r` in both stages. The model can then be used as a **BLIP4Cir baseline** for future research.
 
