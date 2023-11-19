@@ -40,7 +40,7 @@ This is a new BLIP-based baseline we proposed on top of the existing method [CLI
 For details please check out our paper.
 
 <details>
-  <summary>Click to see more</summary>
+  <summary>Click to see our pipeline</summary>
 &emsp; 
 	
 In the first stage (noted as stage-I), to encode the bi-directional query, we prepend a learnable token to the modification text that designates the direction of the query and then finetune the parameters of the BLIP text embedding module.
@@ -130,10 +130,7 @@ The structures are mostly preserved, though modifications are made to the script
 
 ### Training
 
-Our method is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training.
-Please check our paper for details.
-
-The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the VRAM usage to be approx. 36G (during training). You can also adjust the batch size to lower the VRAM consumption.
+The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the maximum VRAM usage to be approx. 36G (CIRR, stage-II training). You can also adjust the batch size to lower the VRAM consumption.
 
 #### on Fashion-IQ
 
@@ -241,7 +238,7 @@ Our generated `.json` files are also available [here](/submission/CIRR/). To try
 
 ##
 
-### Further development
+### Further development :telescope:
 
 <details>
   <summary>Tuning hyperparameters</summary>
