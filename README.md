@@ -80,7 +80,7 @@ The downloaded file structure should [look like this](https://github.com/ABaldra
 
 ### Optional - Set up Comet
 
-We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`.
+We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`. If these arguments are not provided, the experiment will be logged only locally.
 
 ## Code Breakdown
 
