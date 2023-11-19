@@ -1,12 +1,12 @@
 
 ## BLIP4CIR with bi-directional training
 
-[![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#) 
+[![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#)[^1] 
 [![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
 
 The official implementation for **Bi-directional Training for Composed Image Retrieval via Text Prompt Learning**.
 
-> The link and citation for the WACV proceeding version will be updated after its release.
+[^1]: The link and citation for the WACV proceeding version will be updated after its release.
 
 ## Citation
 If you find this code useful for your research, please consider citing our work.
@@ -24,26 +24,59 @@ If you find this code useful for your research, please consider citing our work.
 * **Nov-2023** We have released our code and pre-trained checkpoints.
 
 ## Introduction
+Existing approaches on Composed image retrieval (CIR) learn a mapping from the (reference image, modification text)-pair to an image embedding that is then matched against a large image corpus.
 
-Our first stage (noted as stage-I)
+One area that has not yet been explored is the reverse direction, which asks the question, what reference image when modified as described by the text would produce the given target image?
+
+We propose a bi-directional training scheme that leverages such reversed queries and can be applied to existing CIR architectures with minimum changes, which improves the performance of the model.
+	
+Our method is tested on BLIP4CIR, a two-stage approach, as shown below. 
+This is a new BLIP-based baseline proposed on top of the existing method [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir).
+
+##
+
+In the first stage (noted as stage-I), to encode the bi-directional query, we prepend a learnable token to the modification text that designates the direction of the query and then finetune the parameters of the BLIP text embedding module.
 
 <p align="center">
-  <img src="demo_imgs/model_blip_finetune.png" height="125">
+  <img src="demo_imgs/model_blip_finetune.png" height="125" alt="model architecture for the first stage, BLIP text encoder finetuning">
 </p>
 
-The second stage (noted as stage-II)
+We make no other changes to the network architecture, which allows us to train the second stage (noted as stage-II) as-is, but with queries of both directions.
+
 <p align="center">
-  <img src="demo_imgs/model_combiner.png" height="150">
+  <img src="demo_imgs/model_combiner.png" height="150" alt="model architecture for the second stage, combiner model training">
 </p>
 
 ## Setting up
 
-TODO
+First, clone the repository to a desired location.
 
-Download BLIP pre-trained checkpoint at [`model_base.pth`](https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth), `SHA1: 5f1d8cdfae91e22a35e98a4bbb4c43be7bd0ac50`.
+### Prerequisites
+
+The following commands will create a local Anaconda environment with the necessary packages installed.
+
+```bash
+conda create -n cirr_dev -y python=3.8
+conda activate cirr_dev
+pip install -r requirements.txt
+```
+
+> [!NOTE]
+> The code has been tested on PyTorch 1.11.0 and 2.1.1. Modify the requirement file to specify your PyTorch/CUDA versions.
+
+
+### BLIP pre-trained checkpoint
+Download the [BLIP pre-trained checkpoint](https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth), verify with `SHA1: 5f1d8cdfae91e22a35e98a4bbb4c43be7bd0ac50`.
+
 By default, we recommend storing the downloaded checkpoint file at `models/model_base.pth`.
 
 Here, we use **BLIP w/ ViT-B**. For a complete list of available checkpoints, see [here](https://github.com/salesforce/BLIP#pre-trained-checkpoints).
+
+### Datasets
+Experiments are conducted on two standard datasets -- [Fashion-IQ](https://github.com/XiaoxiaoGuo/fashion-iq) and [CIRR](https://github.com/Cuberick-Orion/CIRR#download-cirr-dataset), please see their repositories for download instructions. 
+
+The downloaded file structure should [look like this](https://github.com/ABaldrati/CLIP4Cir#data-preparation).
+
 
 
 ## Code Breakdown
@@ -53,16 +86,14 @@ Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir) with addi
 From the perspective of implementation, compared to the original CLIP4Cir codebase, differences are mostly in the following two aspects:
 
  - we replaced the CLIP image/text encoders to BLIP as defined in `src/blip_modules/`;
- - we involve the reversed queries during training, which are constructed on-the-fly (see codeblocks surrounding `loss_r` in `src/clip_fine_tune.py` and `src/combiner_train.py`).
+ - we involve the reversed queries during training, which are constructed on the fly (see codeblocks surrounding `loss_r` in `src/clip_fine_tune.py, src/combiner_train.py`).
 
 A brief introduction on the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/master#usage).
-Though the structures are mostly preserved, additional modifications are made to the scripts.
+The structures are mostly preserved, though modifications are made to the scripts.
 
 ## Training
 
-Our methods is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training. 
-
-Experiments are conducted on two standard datasets -- Fashion-IQ and CIRR.
+Our method is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training.
 Please check our paper for details.
 
 The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the VRAM usage to be approx. 36G (during training). You can also adjust the batch size to lower the VRAM consumption.
@@ -177,9 +208,9 @@ Our generated `.json` files are also available [here](/submission/CIRR/). To try
 
 ### Hyperparameters
 
-The following hyperparameters may warrant further tunings for a better performance:
+The following hyperparameters may warrant further tunings for better performance:
 
- * reversed loss scale in both stages (see *supplementary material - Section A*);
+ * reversed loss scale in both stages (see paper - *supplementary material - Section A*);
  * learning rate and cosine learning rate schedule in stage-I;
 
 Note that this is not a comprehensive list.
