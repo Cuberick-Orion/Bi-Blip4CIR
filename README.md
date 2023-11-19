@@ -31,7 +31,8 @@ One area that has not yet been explored is the reverse direction, which asks the
 We propose a bi-directional training scheme that leverages such reversed queries and can be applied to existing CIR architectures with minimum changes, which improves the performance of the model.
 	
 Our method is tested on BLIP4CIR, a two-stage approach, as shown below. 
-This is a new BLIP-based baseline proposed on top of the existing method [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir).
+This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir).
+For details please check out our paper.
 
 ##
 
