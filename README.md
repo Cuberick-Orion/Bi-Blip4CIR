@@ -1,15 +1,15 @@
 
 ## BLIP4CIR with bi-directional training
 
-[![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#)[^1] 
+[![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#) 
 [![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
 
 The official implementation for **Bi-directional Training for Composed Image Retrieval via Text Prompt Learning**.
 
-[^1]: The link and citation for the WACV proceeding version will be updated after its release.
 
-## Citation
-If you find this code useful for your research, please consider citing our work.
+
+
+If you find this code useful for your research, please consider citing our work[^1].
 ```bibtex
 @article{liu2023_bi,
   title={Bi-directional Training for Composed Image Retrieval via Text Prompt Learning},
@@ -19,10 +19,15 @@ If you find this code useful for your research, please consider citing our work.
 }
 ```
 
-## News and Upcoming Updates
+[^1]: The link and citation for the WACV proceeding version will be updated after its release.
 
-* **Nov-2023** We have released our code and pre-trained checkpoints.
+<details>
+  <summary>News and upcoming updates</summary>
+	
+  * **Nov-2023** We have released our code and pre-trained checkpoints.
 
+</details>
+	
 ## Introduction
 Existing approaches on Composed image retrieval (CIR) learn a mapping from the (reference image, modification text)-pair to an image embedding that is then matched against a large image corpus.
 
@@ -34,8 +39,10 @@ Our method is tested on BLIP4CIR, a two-stage approach, as shown below.
 This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir).
 For details please check out our paper.
 
-##
-
+<details>
+  <summary>Click to see more</summary>
+&emsp; 
+	
 In the first stage (noted as stage-I), to encode the bi-directional query, we prepend a learnable token to the modification text that designates the direction of the query and then finetune the parameters of the BLIP text embedding module.
 
 <p align="center">
@@ -48,12 +55,18 @@ We make no other changes to the network architecture, which allows us to train t
   <img src="demo_imgs/model_combiner.png" height="150" alt="model architecture for the second stage, combiner model training">
 </p>
 
+&emsp; 
+</details>
+
+
 ## Setting up
 
 First, clone the repository to a desired location.
 
-### Prerequisites
-
+<details>
+  <summary>Prerequisites</summary>
+&emsp; 
+	
 The following commands will create a local Anaconda environment with the necessary packages installed.
 
 ```bash
@@ -62,25 +75,44 @@ conda activate cirr_dev
 pip install -r requirements.txt
 ```
 
-> [!NOTE]
-> The code has been tested on PyTorch 1.11.0 and 2.1.1. Modify the requirement file to specify your PyTorch/CUDA versions.
+&emsp; 
+</details>
 
-
-### BLIP pre-trained checkpoint
+<details>
+  <summary>BLIP pre-trained checkpoint</summary>
+&emsp; 
+	
 Download the [BLIP pre-trained checkpoint](https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth), verify with `SHA1: 5f1d8cdfae91e22a35e98a4bbb4c43be7bd0ac50`.
 
 By default, we recommend storing the downloaded checkpoint file at `models/model_base.pth`.
 
 Here, we use **BLIP w/ ViT-B**. For a complete list of available checkpoints, see [here](https://github.com/salesforce/BLIP#pre-trained-checkpoints).
 
-### Datasets
+&emsp; 
+</details>
+
+<details>
+  <summary>Datasets</summary>
+&emsp; 
+	
 Experiments are conducted on two standard datasets -- [Fashion-IQ](https://github.com/XiaoxiaoGuo/fashion-iq) and [CIRR](https://github.com/Cuberick-Orion/CIRR#download-cirr-dataset), please see their repositories for download instructions. 
 
 The downloaded file structure should [look like this](https://github.com/ABaldrati/CLIP4Cir#data-preparation).
 
-### Optional - Set up Comet
+&emsp; 
+</details>
 
+<details>
+  <summary>Optional -- Set up Comet</summary>
+&emsp; 
+	
 We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`. If these arguments are not provided, the experiment will be logged only locally.
+
+&emsp; 
+</details>
+
+> [!NOTE]
+> The code has been tested on PyTorch 1.11.0 and 2.1.1. Modify the requirement file to specify your PyTorch/CUDA versions.
 
 ## Code Breakdown
 
@@ -94,16 +126,18 @@ From the perspective of implementation, compared to the original CLIP4Cir codeba
 A brief introduction on the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/master#usage).
 The structures are mostly preserved, though modifications are made to the scripts.
 
-## Training
+## Usage
+
+### Training
 
 Our method is built on top of CLIP4Cir with a two-stage training pipeline, with stage-I being the BLIP text encoder finetuning, and the subsequent stage-II being the combiner training.
 Please check our paper for details.
 
 The following configurations are used for training on one NVIDIA A100 80GB, in practice we observe the VRAM usage to be approx. 36G (during training). You can also adjust the batch size to lower the VRAM consumption.
 
-### for Fashion-IQ
+#### on Fashion-IQ
 
-#### BLIP text encoder finetuning
+Stage-I BLIP text encoder finetuning
 
 ```bash
 # Optional: comet experiment logging --api-key and --workspace
@@ -117,7 +151,7 @@ python src/clip_fine_tune.py --dataset FashionIQ \
                              --experiment-name BLIP_cos10_loss_r.40_5e-5
 ```
 
-#### Combiner training
+Stage-II Combiner training
 
 ```bash
 # Optional: comet experiment logging --api-key and --workspace
@@ -132,9 +166,9 @@ python src/combiner_train.py --dataset FashionIQ \
                              --experiment-name Combiner_loss_r.50_2e-5__BLIP_cos10_loss_r_.40_5e-5
 ```
 
-### for CIRR
+#### on CIRR
 
-#### BLIP text encoder finetuning
+Stage-I BLIP text encoder finetuning
 
 ```bash
 # Optional: comet experiment logging --api-key and --workspace
@@ -147,7 +181,7 @@ python src/clip_fine_tune.py --dataset CIRR \
                              --save-training --save-best --validation-frequency 1 \
                              --experiment-name BLIP_5e-5_cos10_loss_r.1
 ```
-#### Combiner training
+Stage-II Combiner training
 
 ```bash
 # Optional: comet experiment logging --api-key and --workspace
@@ -162,9 +196,9 @@ python src/combiner_train.py --dataset CIRR \
                              --experiment-name Combiner_loss_r.10__BLIP_5e-5_cos10_loss_r.1
 ```
 
-## Validating and Testing
+### Validating and Testing
 
-### Checkpoints
+#### Checkpoints
 
 The following weights shall reproduce our results reported in Tables 1 and 2 (hosted on OneDrive, check the SHA1 hash against the listed value):
 
@@ -173,11 +207,11 @@ The following weights shall reproduce our results reported in Tables 1 and 2 (ho
 | Fashion-IQ <br />`SHA1` | [combiner.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8onMBM4dP_yezpcNQ?e=jTu9Gu) <br />`4a1ba45bf52033c245c420b30873f68bc8e60732`  | [tuned_blip_best.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8oo0AF4kSHKWmJgtg?e=c793Sg) <br />`80f0db536f588253fca416af83cb50fab709edda`   |
 | CIRR <br />`SHA1`      | [combiner_mean.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8oqSfGkANa0U-pW-A?e=ohCgln) <br />`327703361117400de83936674d5c3032af37bd7a` | [tuned_blip_mean.pt](https://1drv.ms/u/s!AgLqyV5O53gxt8orEuV7r87WkyU5Jg?e=Up9aGw) <br />`67dca8a1905802cfd4cd02f640abb0579f1f88fd`   |
 
-### Reproducing results
+#### Reproducing results
 
-To validate on checkpoints, please see below:
+To validate saved checkpoints, please see below.
 
-#### on Fashion-IQ
+For Fashion-IQ, obtain results on the validation split by:
 
 ```bash
 python src/validate.py --dataset fashionIQ \
@@ -185,9 +219,7 @@ python src/validate.py --dataset fashionIQ \
                        --combiner-path <combiner trained weights path>/combiner.pt \
                        --blip-model-path <BLIP text encoder finetuned weights path>/tuned_blip_best.pt
 ```
-#### on CIRR
-
-For validation split:
+For CIRR, obtain results on the validation split by:
 
 ```bash
 python src/validate.py --dataset CIRR \
@@ -196,7 +228,7 @@ python src/validate.py --dataset CIRR \
                        --blip-model-path <BLIP text encoder finetuned weights path>/tuned_blip_mean.pt
 ```
 
-For test split, the following command will generate `recall_submission_combiner-bi.json` and `recall_subset_submission_combiner-bi.json` at `/submission/CIRR/` for submission:
+For CIRR test split, the following command will generate `recall_submission_combiner-bi.json` and `recall_subset_submission_combiner-bi.json` at `/submission/CIRR/` for submission:
 
 ```bash
 python src/cirr_test_submission.py --submission-name combiner-bi \
@@ -207,10 +239,14 @@ python src/cirr_test_submission.py --submission-name combiner-bi \
 
 Our generated `.json` files are also available [here](/submission/CIRR/). To try submitting and receiving the test split results, please refer to [CIRR test split server](https://cirr.cecs.anu.edu.au/).
 
-## Further development
+##
 
-### Hyperparameters
+### Further development
 
+<details>
+  <summary>Tuning hyperparameters</summary>
+  &emsp; 
+	
 The following hyperparameters may warrant further tunings for better performance:
 
  * reversed loss scale in both stages (see paper - *supplementary material - Section A*);
@@ -220,28 +256,48 @@ Note that this is not a comprehensive list.
 
 Additionally, we discovered that an extended stage-I finetuning -- even if the validation shows no sign of overfitting -- may not necessarily benefit the stage-II training.
 
-### Applying CLIP4Cir Combiner upgrades
+&emsp; 
+</details>
 
+<details>
+  <summary>Applying CLIP4Cir Combiner upgrades</summary>
+  &emsp; 
+	
 Since our work, the authors of CLIP4Cir have released upgrades to their original Combiner architecture with an [improved performance](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive).
 
 Given that our method is built directly on top of this architecture, it is reasonable to assume that applying these upgrades to our method (while still replacing CLIP with BLIP encoders) may yield a performance increase. 
 
 It is straightforward to modify the Combiner architecture, as it is self-contained in `src/combiner.py`.
 
-### Finetuning BLIP image encoder
+&emsp; 
+</details>
+
+<details>
+  <summary>Finetuning BLIP image encoder</summary>
+  &emsp; 
 
 In our work, we elect to freeze the BLIP image encoder during stage-I finetuning. However, it is also possible to finetune it alongside the BLIP text encoder.
 
 Note that finetuning the BLIP image encoder would require much more VRAM.
 
-##
+&emsp; 
+</details>
 
-### BLIP4Cir -- Training without bi-directional queries
-
+<details>
+  <summary><b>BLIP4Cir baseline -- Training without bi-directional queries</b></summary>
+  &emsp; 
+	
 Simply comment out the sections related to `loss_r` in both stages. The model can then be used as a **BLIP4Cir baseline** for future research.
+
+&emsp; 
+</details>
 
 ## License
 MIT License applied. Please also check the licenses from [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir/blob/master/LICENSE) and [BLIP](https://github.com/salesforce/BLIP/blob/main/LICENSE.txt) as our code is based on theirs.
+
+## Acknowledgement
+
+Our implementation is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir) and [BLIP](https://github.com/salesforce/BLIP).
 
 ## Contact
 
