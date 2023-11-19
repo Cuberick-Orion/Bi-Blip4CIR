@@ -78,7 +78,9 @@ Experiments are conducted on two standard datasets -- [Fashion-IQ](https://githu
 
 The downloaded file structure should [look like this](https://github.com/ABaldrati/CLIP4Cir#data-preparation).
 
+### Optional - Set up Comet
 
+We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`.
 
 ## Code Breakdown
 
