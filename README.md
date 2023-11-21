@@ -28,8 +28,9 @@ If you find this code useful for your research, please consider citing our work[
 
 <br/><br/>
 **News and upcoming updates**
-	
+
 - [x] **Nov-2023** Code and pre-trained checkpoints released for our WACV 2024 paper.
+- [x] **Nov-2023** Readme instructions released.
     
 
 ## Introduction
@@ -40,7 +41,7 @@ One area that has not yet been explored is the reverse direction, which asks the
 We propose a bi-directional training scheme that leverages such reversed queries and can be applied to existing CIR architectures with minimum changes, which improves the performance of the model.
 	
 Our method is tested on BLIP4CIR, a two-stage approach, as shown below. 
-This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval).
+This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval)[^2].
 For details please check out our paper.
 
 <details>
@@ -68,7 +69,7 @@ We make no other changes to the network architecture, which allows us to train t
 First, clone the repository to a desired location.
 
 <details>
-  <summary>Prerequisites</summary>
+  <summary><b>Prerequisites</b></summary>
 &emsp; 
 	
 The following commands will create a local Anaconda environment with the necessary packages installed.
@@ -83,7 +84,7 @@ pip install -r requirements.txt
 </details>
 
 <details>
-  <summary>BLIP pre-trained checkpoint</summary>
+  <summary><b>BLIP pre-trained checkpoint</b></summary>
 &emsp; 
 	
 Download the [BLIP pre-trained checkpoint](https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth), verify with `SHA1: 5f1d8cdfae91e22a35e98a4bbb4c43be7bd0ac50`.
@@ -96,7 +97,7 @@ Here, we use **BLIP w/ ViT-B**. For BLIP checkpoint options, see [here](https://
 </details>
 
 <details>
-  <summary>Datasets</summary>
+  <summary><b>Datasets</b></summary>
 &emsp; 
 	
 Experiments are conducted on two standard datasets -- [Fashion-IQ](https://github.com/XiaoxiaoGuo/fashion-iq) and [CIRR](https://github.com/Cuberick-Orion/CIRR#download-cirr-dataset), please see their repositories for download instructions. 
@@ -126,10 +127,10 @@ Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir)[^2] with 
 
 From the perspective of implementation, compared to the original CLIP4Cir codebase, differences are mostly in the following two aspects:
 
- - we replaced the CLIP image/text encoders to BLIP as defined in `src/blip_modules/`;
+ - we replaced the CLIP image/text encoders with BLIP as defined in `src/blip_modules/`;
  - we involve the reversed queries during training, which are constructed on the fly (see codeblocks surrounding `loss_r` in `src/clip_fine_tune.py, src/combiner_train.py`).
 
-A brief introduction on the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/master#usage).
+A brief introduction to the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f#usage).
 The structures are mostly preserved, though we have made changes to the scripts.
 
 [^2]: Our code is based on [this specific commit](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f) of CLIP4Cir. Note that their code has since been updated to a newer version, see [**Directions for Further Development** 🔭](#interested-in-further-development-telescope) -- _Applying CLIP4Cir combiner upgrades_.
@@ -298,7 +299,7 @@ Simply comment out the sections related to `loss_r` in both stages. The model ca
 </details>
 
 ## License
-MIT License applied. Please also check the licenses from [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir/blob/master/LICENSE) and [BLIP](https://github.com/salesforce/BLIP/blob/main/LICENSE.txt) as our code is based on theirs.
+MIT License applied. In line with licenses from [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir/blob/master/LICENSE) and [BLIP](https://github.com/salesforce/BLIP/blob/main/LICENSE.txt).
 
 ## Acknowledgement
 
