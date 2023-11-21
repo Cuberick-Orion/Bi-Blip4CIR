@@ -3,7 +3,7 @@
 
 <sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Further Development** 🔭](#interested-in-further-development-telescope)</sup>
 
-[![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#) 
+[![arXiv](https://img.shields.io/badge/paper-wacv2024-blue)](#) 
 [![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
 
 	
@@ -24,10 +24,9 @@ If you find this code useful for your research, please consider citing our work[
   year={2023}
 }
 ```
-
 [^1]: The link and citation for the WACV proceeding version will be updated after its release.
-<br/><br/>
 
+<br/><br/>
 **News and upcoming updates**
 	
 - [x] **Nov-2023** Code and pre-trained checkpoints released for our WACV 2024 paper.
@@ -123,7 +122,7 @@ If these arguments are not provided, the experiment will be logged only locally.
 
 ## Code breakdown
 
-Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir) with additional modules from [BLIP](https://github.com/salesforce/BLIP).
+Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir)[^2] with additional modules from [BLIP](https://github.com/salesforce/BLIP).
 
 From the perspective of implementation, compared to the original CLIP4Cir codebase, differences are mostly in the following two aspects:
 
@@ -131,7 +130,9 @@ From the perspective of implementation, compared to the original CLIP4Cir codeba
  - we involve the reversed queries during training, which are constructed on the fly (see codeblocks surrounding `loss_r` in `src/clip_fine_tune.py, src/combiner_train.py`).
 
 A brief introduction on the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/master#usage).
-The structures are mostly preserved, though modifications are made to the scripts.
+The structures are mostly preserved, though we have made changes to the scripts.
+
+[^2]: Our code is based on [this specific commit](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f) of CLIP4Cir. Note that their code has since been updated to a newer version, see [**Directions for Further Development** 🔭](#interested-in-further-development-telescope) -- _Applying CLIP4Cir combiner upgrades_.
 
 ## Usage
 
@@ -264,7 +265,7 @@ Additionally, we discovered that an extended stage-I finetuning -- even if the v
 </details>
 
 <details>
-  <summary>Applying CLIP4Cir Combiner upgrades</summary>
+  <summary>Applying CLIP4Cir combiner upgrades</summary>
   &emsp; 
 
 This implementation and our WACV 2024 paper is based on the combiner architecture in [CLIP4Cir (v2)](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval).
