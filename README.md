@@ -1,10 +1,14 @@
 
 ## BLIP4CIR with bi-directional training
 
-<sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Further Development** 🔭](#further-development-telescope)</sup>
+<sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Further Development** 🔭](#interested-in-further-development-telescope)</sup>
 
 [![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#) 
 [![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
+
+	
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/bi-directional-training-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=bi-directional-training-for-composed-image)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/bi-directional-training-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=bi-directional-training-for-composed-image)
 
 The official implementation for **Bi-directional Training for Composed Image Retrieval via Text Prompt Learning**.
 
@@ -22,14 +26,13 @@ If you find this code useful for your research, please consider citing our work[
 ```
 
 [^1]: The link and citation for the WACV proceeding version will be updated after its release.
+<br/><br/>
 
-<details>
-  <summary>News and upcoming updates</summary>
+**News and upcoming updates**
 	
-  * **Nov-2023** We have released our code and pre-trained checkpoints.
+- [x] **Nov-2023** Code and pre-trained checkpoints released for our WACV 2024 paper.
+    
 
-</details>
-	
 ## Introduction
 Existing approaches on Composed image retrieval (CIR) learn a mapping from the (reference image, modification text)-pair to an image embedding that is then matched against a large image corpus.
 
@@ -38,7 +41,7 @@ One area that has not yet been explored is the reverse direction, which asks the
 We propose a bi-directional training scheme that leverages such reversed queries and can be applied to existing CIR architectures with minimum changes, which improves the performance of the model.
 	
 Our method is tested on BLIP4CIR, a two-stage approach, as shown below. 
-This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir).
+This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval).
 For details please check out our paper.
 
 <details>
@@ -118,7 +121,7 @@ If these arguments are not provided, the experiment will be logged only locally.
 > [!NOTE]
 > The code has been tested on PyTorch 1.11.0 and 2.1.1. Modify the requirement file to specify your PyTorch/CUDA versions.
 
-## Code Breakdown
+## Code breakdown
 
 Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir) with additional modules from [BLIP](https://github.com/salesforce/BLIP).
 
@@ -197,7 +200,7 @@ python src/combiner_train.py --dataset CIRR \
                              --experiment-name Combiner_loss_r.10__BLIP_5e-5_cos10_loss_r.1
 ```
 
-### Validating and Testing
+### Validating and testing
 
 #### Checkpoints
 
@@ -242,7 +245,7 @@ Our generated `.json` files are also available [here](/submission/CIRR/). To try
 
 ##
 
-### Further development :telescope:
+### Interested in further development? :telescope:
 
 <details>
   <summary>Tuning hyperparameters</summary>
@@ -263,12 +266,12 @@ Additionally, we discovered that an extended stage-I finetuning -- even if the v
 <details>
   <summary>Applying CLIP4Cir Combiner upgrades</summary>
   &emsp; 
-	
-Since our work, the authors of CLIP4Cir have released an upgrade to their original Combiner architecture with an [improved performance](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive), termed _Clip4Cir (v3)_ on the leaderboard.
 
-Given that our method is built directly on top of this architecture, it is reasonable to assume that applying these upgrades to our method (while still replacing CLIP with BLIP encoders) may yield a performance increase. 
+This implementation and our WACV 2024 paper is based on the combiner architecture in [CLIP4Cir (v2)](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval).
 
-It is straightforward to modify the Combiner architecture, as it is self-contained in `src/combiner.py`.
+Since our work, the authors of CLIP4Cir have released an upgrade to their combiner architecture termed [Clip4Cir (v3)](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive).
+
+We anticipate that applying the model upgrade to our method (while still replacing CLIP with BLIP encoders) will yield a performance increase. 
 
 &emsp; 
 </details>
