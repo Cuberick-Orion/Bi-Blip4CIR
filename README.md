@@ -1,6 +1,8 @@
 
 ## BLIP4CIR with bi-directional training
 
+<sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Further Development** 🔭](#further-development-telescope)</sup>
+
 [![arXiv](https://img.shields.io/badge/paper-wacv2024-cyan)](#) 
 [![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
 
@@ -86,7 +88,7 @@ Download the [BLIP pre-trained checkpoint](https://storage.googleapis.com/sfr-vi
 
 By default, we recommend storing the downloaded checkpoint file at `models/model_base.pth`.
 
-Here, we use **BLIP w/ ViT-B**. For a complete list of available checkpoints, see [here](https://github.com/salesforce/BLIP#pre-trained-checkpoints).
+Here, we use **BLIP w/ ViT-B**. For BLIP checkpoint options, see [here](https://github.com/salesforce/BLIP#pre-trained-checkpoints).
 
 &emsp; 
 </details>
@@ -106,7 +108,9 @@ The downloaded file structure should [look like this](https://github.com/ABaldra
   <summary>Optional -- Set up Comet</summary>
 &emsp; 
 	
-We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`. If these arguments are not provided, the experiment will be logged only locally.
+We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`. 
+
+If these arguments are not provided, the experiment will be logged only locally.
 
 &emsp; 
 </details>
@@ -260,7 +264,7 @@ Additionally, we discovered that an extended stage-I finetuning -- even if the v
   <summary>Applying CLIP4Cir Combiner upgrades</summary>
   &emsp; 
 	
-Since our work, the authors of CLIP4Cir have released upgrades to their original Combiner architecture with an [improved performance](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive).
+Since our work, the authors of CLIP4Cir have released an upgrade to their original Combiner architecture with an [improved performance](https://paperswithcode.com/paper/composed-image-retrieval-using-contrastive), termed _Clip4Cir (v3)_ on the leaderboard.
 
 Given that our method is built directly on top of this architecture, it is reasonable to assume that applying these upgrades to our method (while still replacing CLIP with BLIP encoders) may yield a performance increase. 
 
