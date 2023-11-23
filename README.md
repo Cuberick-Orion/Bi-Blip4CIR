@@ -35,7 +35,9 @@ If you find this code useful for your research, please consider citing our work[
 
 ##
 
-If you are interested in this task, feel free to check out [our new work](https://arxiv.org/abs/2305.16304v2) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder**, currently ranked [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=candidate-set-re-ranking-for-composed-image) and [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=candidate-set-re-ranking-for-composed-image). 
+If you are interested in this task, feel free to check out [our new work](https://arxiv.org/abs/2305.16304v2) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder**, currently ranked:
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=candidate-set-re-ranking-for-composed-image) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=candidate-set-re-ranking-for-composed-image).
 
 Code and checkpoints will be released shortly [here](https://github.com/Cuberick-Orion/Candidate-Reranking-CIR). 
 
