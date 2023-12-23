@@ -1,9 +1,9 @@
 
 ## BLIP4CIR with bi-directional training
 
-<sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Further Development** 🔭](#interested-in-further-development-telescope)</sup>
+<sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Performance Increase & Further Development** 🔭](#interested-in-further-development-telescope)</sup>
 
-[![arXiv](https://img.shields.io/badge/paper-wacv2024-blue)](#) 
+[![cvf](https://img.shields.io/badge/paper-wacv2024-blue)](https://openaccess.thecvf.com/content/WACV2024/html/Liu_Bi-Directional_Training_for_Composed_Image_Retrieval_via_Text_Prompt_Learning_WACV_2024_paper.html) 
 [![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
 
 	
@@ -12,19 +12,17 @@
 
 The official implementation for **Bi-directional Training for Composed Image Retrieval via Text Prompt Learning**.
 
-
-
-
-If you find this code useful for your research, please consider citing our work[^1].
+If you find this code useful for your research, please consider citing our work.
 ```bibtex
-@article{liu2023_bi,
-  title={Bi-directional Training for Composed Image Retrieval via Text Prompt Learning},
-  author={Liu, Zheyuan and Sun, Weixuan and Hong, Yicong and Teney, Damien and Gould, Stephen},
-  journal={arXiv preprint arXiv:2303.16604},
-  year={2023}
+@InProceedings{Liu_2024_WACV,
+    author    = {Liu, Zheyuan and Sun, Weixuan and Hong, Yicong and Teney, Damien and Gould, Stephen},
+    title     = {Bi-Directional Training for Composed Image Retrieval via Text Prompt Learning},
+    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+    month     = {January},
+    year      = {2024},
+    pages     = {5753-5762}
 }
 ```
-[^1]: The link and citation for the WACV proceeding version will be updated after its release.
 
 ##
 
@@ -49,7 +47,7 @@ One area that has not yet been explored is the reverse direction, which asks the
 We propose a bi-directional training scheme that leverages such reversed queries and can be applied to existing CIR architectures with minimum changes, which improves the performance of the model.
 	
 Our method is tested on BLIP4CIR, a two-stage approach, as shown below. 
-This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval)[^2].
+This is a new BLIP-based baseline we proposed on top of the existing method [CLIP4Cir](https://paperswithcode.com/paper/conditioned-and-composed-image-retrieval)[^1].
 For details please check out our paper.
 
 <details>
@@ -131,7 +129,7 @@ If these arguments are not provided, the experiment will be logged only locally.
 
 ## Code breakdown
 
-Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir)[^2] with additional modules from [BLIP](https://github.com/salesforce/BLIP).
+Our code is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir)[^1] with additional modules from [BLIP](https://github.com/salesforce/BLIP).
 
 From the perspective of implementation, compared to the original CLIP4Cir codebase, differences are mostly in the following two aspects:
 
@@ -141,7 +139,7 @@ From the perspective of implementation, compared to the original CLIP4Cir codeba
 A brief introduction to the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f#usage).
 The structures are mostly preserved, though we have made changes to the scripts.
 
-[^2]: Our code is based on [this specific commit](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f) of CLIP4Cir. Note that their code has since been updated to a newer version, see [**Directions for Further Development** 🔭](#interested-in-further-development-telescope) -- _Applying CLIP4Cir combiner upgrades_.
+[^1]: Our code is based on [this specific commit](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f) of CLIP4Cir. Note that their code has since been updated to a newer version, see [**Directions for Further Development** 🔭](#interested-in-further-development-telescope) -- _Applying CLIP4Cir combiner upgrades_.
 
 ## Usage
 
