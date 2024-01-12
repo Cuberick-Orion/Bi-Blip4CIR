@@ -125,7 +125,11 @@ If these arguments are not provided, the experiment will be logged only locally.
 </details>
 
 > [!NOTE]
-> The code has been tested on PyTorch 1.11.0 and 2.1.1. Modify the requirement file to specify your PyTorch/CUDA versions.
+> Our code has been tested on `torch 1.11.0` and `2.1.1`. Presumably, any version in between shall be fine.
+> 
+> Modify `requirements.txt` to specify your specific wheel of PyTorch+CUDA versions.
+>
+> Note that BLIP supports `transformers<=4.25`, otherwise errors will occur.
 
 ## Code breakdown
 
