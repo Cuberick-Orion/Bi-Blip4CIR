@@ -117,7 +117,7 @@ The downloaded file structure should [look like this](https://github.com/ABaldra
   <summary>Optional -- Set up Comet</summary>
 &emsp; 
 	
-We use comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`. 
+We use Comet to log the experiments. If you are unfamiliar with it, see [the quick start guide](https://www.comet.com/docs/v2/guides/getting-started/quickstart/). You will need to obtain an API Key for `--api-key` and create a personal workspace for `--workspace`. 
 
 If these arguments are not provided, the experiment will be logged only locally.
 
@@ -141,7 +141,7 @@ From the perspective of implementation, compared to the original CLIP4Cir codeba
  - we involve the reversed queries during training, which are constructed on the fly (see codeblocks surrounding `loss_r` in `src/clip_fine_tune.py, src/combiner_train.py`).
 
 A brief introduction to the CLIP4Cir codebase is in [CLIP4Cir - Usage](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f#usage).
-The structures are mostly preserved, though we have made changes to the scripts.
+The structures are mostly preserved. We made some minor changes (to experiment logging etc.) but they should be easy to understand.
 
 [^1]: Our code is based on [this specific commit](https://github.com/ABaldrati/CLIP4Cir/tree/a6cd95d9f00a3aa8fa5ab4eb1d0442518d28ad7f) of CLIP4Cir. Note that their code has since been updated to a newer version, see [**Directions for Further Development** 🔭](#interested-in-further-development-telescope) -- _Applying CLIP4Cir combiner upgrades_.
 
