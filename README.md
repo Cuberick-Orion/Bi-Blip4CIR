@@ -28,12 +28,13 @@ If you find this code useful for your research, please consider citing our work.
 
 **News and upcoming updates**
 
+- [x] **Jan-2024** Code and pre-trained checkpoints released for our new work, see below.
 - [x] **Nov-2023** Code and pre-trained checkpoints released for our WACV 2024 paper.
 - [x] **Nov-2023** Readme instructions released.
 
 ##
 
-If you are interested in this task, feel free to check out [our new work](https://arxiv.org/abs/2305.16304v2) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder** (code and checkpoints will be released shortly [here](https://github.com/Cuberick-Orion/Candidate-Reranking-CIR)), currently ranked:
+If you are interested in this task, feel free to check out [our new work](https://arxiv.org/abs/2305.16304) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder** (code and checkpoints are released [here](https://github.com/Cuberick-Orion/Candidate-Reranking-CIR)), currently ranked:
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=candidate-set-re-ranking-for-composed-image) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=candidate-set-re-ranking-for-composed-image).
 
