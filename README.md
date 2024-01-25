@@ -1,16 +1,25 @@
-
+<div align="center">
+	
 ## BLIP4CIR with bi-directional training
+
+The official implementation for **Bi-directional Training for Composed Image Retrieval via Text Prompt Learning**.
+
+##
 
 <sup>Site navigation > [**Setting up**](#setting-up) &nbsp;|&nbsp; [**Usage**](#usage) &nbsp;|&nbsp; [**Directions for Performance Increase & Further Development** 🔭](#interested-in-further-development-telescope)</sup>
 
-[![cvf](https://img.shields.io/badge/paper-wacv2024-blue)](https://openaccess.thecvf.com/content/WACV2024/html/Liu_Bi-Directional_Training_for_Composed_Image_Retrieval_via_Text_Prompt_Learning_WACV_2024_paper.html) 
-[![arXiv](https://img.shields.io/badge/arXiv-2303.16604-red)](https://arxiv.org/abs/2303.16604)
+[![cvf](https://img.shields.io/badge/paper-WACV%202024-blue)](https://openaccess.thecvf.com/content/WACV2024/html/Liu_Bi-Directional_Training_for_Composed_Image_Retrieval_via_Text_Prompt_Learning_WACV_2024_paper.html) 
+[![arXiv](https://img.shields.io/badge/arXiv-2303.16604-00ff00)](https://arxiv.org/abs/2303.16604)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 	
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/bi-directional-training-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=bi-directional-training-for-composed-image)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/bi-directional-training-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=bi-directional-training-for-composed-image)
 
-The official implementation for **Bi-directional Training for Composed Image Retrieval via Text Prompt Learning**.
+
+</div>
+
+##
 
 If you find this code useful for your research, please consider citing our work.
 ```bibtex
@@ -24,21 +33,19 @@ If you find this code useful for your research, please consider citing our work.
 }
 ```
 
-##
-
-**News and upcoming updates**
-
-- [x] **Jan-2024** Code and pre-trained checkpoints released for our new work, see below.
-- [x] **Nov-2023** Code and pre-trained checkpoints released for our WACV 2024 paper.
-- [x] **Nov-2023** Readme instructions released.
-
-##
-
 If you are interested in this task, feel free to check out [our new work](https://arxiv.org/abs/2305.16304) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder** (code and checkpoints are released [here](https://github.com/Cuberick-Orion/Candidate-Reranking-CIR)), currently ranked:
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=candidate-set-re-ranking-for-composed-image) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=candidate-set-re-ranking-for-composed-image).
 
- 
+##
+
+**News and upcoming updates**
+
+- [x] **Jan-2024** Code and pre-trained checkpoints released for our new work above.
+- [x] **Nov-2023** Code and pre-trained checkpoints released for our WACV 2024 paper.
+- [x] **Nov-2023** Readme instructions released.
+
+
 
 ## Introduction
 Existing approaches on Composed image retrieval (CIR) learn a mapping from the (reference image, modification text)-pair to an image embedding that is then matched against a large image corpus.
