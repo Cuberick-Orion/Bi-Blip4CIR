@@ -326,4 +326,4 @@ Our implementation is based on [CLIP4Cir](https://github.com/ABaldrati/CLIP4Cir)
 ## Contact
 
  * Raise a new [GitHub issue](https://github.com/Cuberick-Orion/Bi-Blip4CIR/issues/new)
- * [Contact us](mailto:zheyuan.liu@anu.edu.au?subject=Regarding_Bi-BLIP4Cir)
+ * [Contact us](mailto:zheyuan.david.liu@outlook.com?subject=Regarding_Bi-BLIP4Cir)
