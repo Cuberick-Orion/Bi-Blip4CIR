@@ -32,11 +32,22 @@ If you find this code useful for your research, please consider citing our work.
     pages     = {5753-5762}
 }
 ```
+##
 
-If you are interested in this task, feel free to check out [our new work](https://arxiv.org/abs/2305.16304) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder** (code and checkpoints are released [here](https://github.com/Cuberick-Orion/Candidate-Reranking-CIR)), currently ranked:
+If you are interested in this task, feel free to check out [our new work](https://openreview.net/forum?id=fJAwemcvpL) **Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder** at TMLR (code and checkpoints are released [here](https://github.com/Cuberick-Orion/Candidate-Reranking-CIR)), currently ranked:
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-fashion-iq)](https://paperswithcode.com/sota/image-retrieval-on-fashion-iq?p=candidate-set-re-ranking-for-composed-image) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/candidate-set-re-ranking-for-composed-image/image-retrieval-on-cirr)](https://paperswithcode.com/sota/image-retrieval-on-cirr?p=candidate-set-re-ranking-for-composed-image).
 
+```bibtex
+@article{liu2024candidate,
+    title={Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder},
+    author={Zheyuan Liu and Weixuan Sun and Damien Teney and Stephen Gould},
+    journal={Transactions on Machine Learning Research},
+    issn={2835-8856},
+    year={2024},
+    url={https://openreview.net/forum?id=fJAwemcvpL}
+}
+```
 ##
 
 **News and upcoming updates**
