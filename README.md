@@ -40,12 +40,12 @@ If you are interested in this task, feel free to check out [our new work](https:
 
 ```bibtex
 @article{liu2024candidate,
-    title={Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder},
-    author={Zheyuan Liu and Weixuan Sun and Damien Teney and Stephen Gould},
-    journal={Transactions on Machine Learning Research},
-    issn={2835-8856},
-    year={2024},
-    url={https://openreview.net/forum?id=fJAwemcvpL}
+    title     = {Candidate Set Re-ranking for Composed Image Retrieval with Dual Multi-modal Encoder},
+    author    = {Zheyuan Liu and Weixuan Sun and Damien Teney and Stephen Gould},
+    journal   = {Transactions on Machine Learning Research},
+    issn      = {2835-8856},
+    year      = {2024},
+    url       = {https://openreview.net/forum?id=fJAwemcvpL}
 }
 ```
 ##
